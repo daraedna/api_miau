@@ -23,10 +23,18 @@ const AnimalSchema = new mongoose.Schema({
     sex:{
         type: String,
     },
-    user: {
+    size:{
+        type: String,
+        required: true,
+    },
+    user_id: {
         type: mongoose.Schema.Types.ObjectId,
         //referencia de qual model
         ref: 'User'
+    },
+    user: {
+        type: String,
+        required: true
     }
 });
 

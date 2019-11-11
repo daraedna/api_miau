@@ -1,11 +1,16 @@
 const Animal = require('../models/Animal');
 const User = require('../models/User');
 
+module.exports = {  
+    async index(req, res){
+        const  animals = await Animal.find();
 
-module.exports = {
+        return res.json({ animals });
+    },
+
     async store(req, res){
         const { filename } = req.file;
-        const { species, breed, age, observation, sex } = req.body;
+        const { species, breed, age, observation, sex, size} = req.body;
         const { user_id } = req.headers;
 
         const user = await User.findById(user_id);
@@ -15,13 +20,15 @@ module.exports = {
         }
 
         const animal = await Animal.create({
-            user: user_id,
+            user_id,
+            user: user.name,
             img: filename,
             species, 
             breed,
             age,
             observation,
             sex, 
+            size
         });
         
         return res.json({ animal });
