@@ -5,22 +5,18 @@ const authConfig = require('../../config/auth');
 
 const User = require('../models/User');
 
-function generateToken(params = {}) {
-     return jwt.sign({params}, authConfig.secret, {
-          expiresIn: 86400,
-     });
-}
-
 module.exports = {
+
+     //login
      async index(req, res){
 
           const { email, password } = req.body;
           
           const user = await User.findOne({ email }).select('+password');
 
-          const { id, name, phone } = user;
+          const { id, name, phone, city, state } = user;
 
-          const response = { id, email, name, phone }
+          const response = { id, name, email, phone, city, state }
 
           if (!user){
                return res.status(404).json({ error: 'User not found' });
@@ -37,8 +33,10 @@ module.exports = {
           res.json({ user: response, token });
      },
 
+
+     //register
      async store(req, res){
-          const { email, password, name, phone } = req.body;
+          const { email, password, name, phone, city, state } = req.body;
 
           try {
                const userAlreadyExists = await User.findOne({ email });
@@ -47,11 +45,11 @@ module.exports = {
                     res.status(409).json({ error: 'User already exists' });
                }
                else{
-                    await User.create({ email, password, name, phone });
+                    await User.create({ email, password, name, phone, city, state });
                     
                     res.status(200).json({
                          sucess: 'User created',
-                         user: { email, password, name, phone }
+                         user: { email, password, name, phone, city, state },
                     });
                }
           } catch (error) {

@@ -12,6 +12,7 @@ mongoose.connect('mongodb+srv://miau:miau@miau-fi2ut.mongodb.net/miau?retryWrite
 
 const authRoutes = require('./app/routes/authRoutes');
 const animalRoutes = require('./app/routes/animalRoutes');
+const instRoutes = require('./app/routes/instRouter');
 
 const corsConfig = {
     origin: '*',
@@ -24,6 +25,7 @@ app.use(express.json());
 
 app.use(authRoutes);
 app.use(animalRoutes);
+app.use(instRoutes);
 
 const PORT = process.env.PORT || 3333;
 

@@ -24,6 +24,12 @@ const InstSchema = new mongoose.Schema({
     descritionInst:{
         type: String,
     },
+    cityInst: {
+        type: String,
+    },
+    stateInst:{
+        type: String,
+    },
     createdAtInst: {
         type: Date,
         default: Date.now,

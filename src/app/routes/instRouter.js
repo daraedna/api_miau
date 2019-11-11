@@ -1,9 +1,13 @@
 const express = require('express');
-const authRoutes = express.Router( );
+const instRoutes = express.Router( );
+const showRoutes = express.Router( );
 
 const instController = require('../controllers/instController');
+const showController = require('../controllers/showController');
 
-authRoutes.post('/authenticateInst', instController.index);
-authRoutes.post('/registerInst', instController.store);
+instRoutes.post('/authenticateInst', instController.index);
+instRoutes.post('/registerInst', instController.store);
+showRoutes.get('/listInst', showController.index);
 
-module.exports = authRoutes;
+module.exports = instRoutes;
+module.exports = showRoutes;
