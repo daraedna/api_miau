@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const path = require('path');
 
 const app = express();
 const cors = require('cors');
@@ -20,7 +21,7 @@ const corsConfig = {
     optionsSucessStatus: 200,
 }
 
-app.use(express.static('uploads'));
+app.use('/files', express.static(path.resolve(__dirname, '..', 'uploads')));
 app.use(cors(corsConfig));
 app.use(express.json());
 
@@ -29,6 +30,6 @@ app.use(animalRoutes);
 app.use(instRoutes);
 app.use(necessitieRoutes);
 
-const PORT = process.env.PORT || 3333;
+const PORT = process.env.PORT || 3331;
 
 app.listen(PORT, () => console.log(`SERVER RUNNING ON THE PORT: ${PORT}`));

@@ -36,6 +36,14 @@ const AnimalSchema = new mongoose.Schema({
         type: String,
         required: true
     }
+}, {
+    toJSON: {
+        virtuals: true
+    }
 });
+
+AnimalSchema.virtual('img_url').get(function(){
+    return `http://localhost:3331/files/${this.img}`
+})
 
 module.exports = mongoose.model('Animal', AnimalSchema)

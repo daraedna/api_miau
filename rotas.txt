@@ -1,7 +1,17 @@
-//Rotas do usuario
+//Usuário
+  // (POST) - '/register' => Cria um usuário 
+  // (POST) - '/authenticate' => Faz login do usuário
 
-//Rotas da instituição
+//Instituição
+  // (POST) - '/registerInst' => Cria uma Instituição 
+  // (POST) - '/authenticateInst' => Faz login da Instituição
+  // (GET) - '/listInst' => Retorna todas as Instituições cadastradas
 
-//Rotas do animal
+//Animal
+  // (POST) - '/animal' => Cadastra um animal 
+  // (GET) - '/animal' => Retorna todos os animais cadastrados
 
-//Rotas das necessidades
+//Necessidades
+  // (POST) - '/necessitie' => Cadastra uma Necessidade em uma Instituição
+  // (GET) - '/necessities' => Retorna todas as Necessidades cadastradas 
+ 

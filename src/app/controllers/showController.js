@@ -1,3 +1,5 @@
+
+
 const Inst = require('../models/Inst');
 
 
@@ -8,4 +10,6 @@ module.exports = {
 
         return res.json({ insts });
     }
+
+  
 }

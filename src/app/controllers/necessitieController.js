@@ -4,8 +4,9 @@ const Inst = require('../models/Inst');
 module.exports = {  
 
     async index(req, res){
-        const  necessities = await Necessitie.find();
-
+        const { inst_id } = req.headers;
+        const  necessities = await Necessitie.find({inst_id});
+    
         return res.json({ necessities });
     },
 

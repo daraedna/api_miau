@@ -8,34 +8,36 @@ const Inst = require('../models/Inst');
 module.exports = {
      
       // login
-     async index(req, res){
+      async index(req, res){
 
-          const { email, password } = req.body;
+          const { emailInst, passwordInst} = req.body;
           
-          const inst = await Inst.findOne({ email }).select('+passwordInst');
+          const inst = await Inst.findOne({ emailInst }).select('+passwordInst');
 
-          const { id, nameInst, phoneInst } = inst;
+          const { id, nameInst, phoneInst, descritionInst, cityInst, stateInst } = inst;
 
-          const response = { id, emailInst, nameInst, phoneInst,descritionInst, cityInst, stateInst }
-
+          const response = { id, nameInst, phoneInst, descritionInst, cityInst, stateInst }
+    
           if (!inst){
-               return res.status(404).json({ error: 'Inst not found' });
+               return res.status(404).json({ error: 'inst not found' });
           }
 
-          if (!await bcrypt.compare(password, inst.password)){
+          if (!await bcrypt.compare(passwordInst, inst.passwordInst)){
                return res.status(400).send({ error: 'Invalid password' });
           }
 
-          const token = jwt.sign({ id: inst.id }, authConfig.secret, {
+          const tokenInst = jwt.sign({ id: inst.id }, authConfig.secret, {
                expiresIn: 86400,
           });
 
-          res.json({ inst: response, token });
+          res.json({ inst: response, tokenInst });
+          
      },
+
 
      //register
      async store(req, res){
-          const { emailInst, passwordInst, nameInst, phoneInst, descritionInst, cityInst, stateInst } = req.body;
+          const { nameInst, emailInst, passwordInst, phoneInst, descritionInst, cityInst, stateInst } = req.body;
           try {
                const instAlreadyExists = await Inst.findOne({ emailInst });
 

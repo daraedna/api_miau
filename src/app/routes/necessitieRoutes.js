@@ -3,7 +3,7 @@ const necessitieRoutes = express.Router( );
 
 const necessitieController = require('../controllers/necessitieController');
 
-necessitieRoutes.get('/necessitie', necessitieController.index);
+necessitieRoutes.get('/necessities', necessitieController.index);
 necessitieRoutes.post('/necessitie', necessitieController.store);
 
 module.exports = necessitieRoutes;
