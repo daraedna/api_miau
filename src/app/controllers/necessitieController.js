@@ -17,7 +17,7 @@ module.exports = {
         const inst = await Inst.findById(inst_id);
 
         if(!inst){
-            return res.status(400).json({ error: 'Inst does not exists' });
+            return res.status(200).json({ error: 'Inst does not exists' });
         }
 
         const necessitie = await Necessitie.create({

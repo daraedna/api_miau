@@ -1,5 +1,3 @@
-
-
 const Inst = require('../models/Inst');
 
 

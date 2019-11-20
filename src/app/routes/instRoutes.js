@@ -11,4 +11,8 @@ instRoutes.post('/authenticateInst', instController.index);
 instRoutes.post('/registerInst', instController.store);
 showRoutes.get('/listInst', showController.index);
 
-module.exports = instRoutes, showRoutes;
+module.exports = {
+    showRoutes,
+    instRoutes
+}
+    

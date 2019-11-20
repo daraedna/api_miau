@@ -8,10 +8,10 @@ module.exports = {
         destination: path.resolve(__dirname, '..', '..', 'uploads'),
         filename: (req, file, cb) => {
             const extensao = path.extname(file.originalname);
-            const name = path.basename(filename.originalname);
+            const name = path.basename(file.originalname);
         
             cb(null, `${name}-${Date.now()}${extensao}`)
     
         }
-    }),
+    }), 
 }

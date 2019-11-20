@@ -5,7 +5,7 @@ const authConfig = require('../../config/auth');
 
 const User = require('../models/User');
 
-module.exports = {
+module.exports = { 
 
      //login
      async index(req, res){
@@ -14,46 +14,54 @@ module.exports = {
           
           const user = await User.findOne({ email }).select('+password');
 
-          const { id, name, phone, city, state } = user;
-
-          const response = { id, name, email, phone, city, state }
 
           if (!user){
-               return res.status(404).json({ error: 'User not found' });
+               return res.status(200).json({ error: 'User not found' });
           }
 
           if (!await bcrypt.compare(password, user.password)){
-               return res.status(400).send({ error: 'Invalid password' });
+               return res.status(200).send({ error: 'Invalid password' });
           }
 
-          const token = jwt.sign({ id: user.id }, authConfig.secret, {
+          const token =  await jwt.sign({ id: user.id }, authConfig.secret, {
                expiresIn: 86400,
           });
 
-          res.json({ user: response, token });
+          user.password = undefined;
+
+          res.json({ user, token });   
      },
 
 
      //register
      async store(req, res){
+          const { filename } = req.file;
           const { email, password, name, phone, city, state } = req.body;
 
           try {
                const userAlreadyExists = await User.findOne({ email });
 
                if(userAlreadyExists){
-                    res.status(409).json({ error: 'User already exists' });
+                    res.status(200).json({ error: 'User already exists' });
                }
                else{
-                    await User.create({ email, password, name, phone, city, state });
+                    const user = await User.create({ 
+                         img_user: filename, 
+                         email, 
+                         password,
+                         name, 
+                         phone, 
+                         city, 
+                         state 
+                    });
                     
-                    res.status(200).json({
+                      res.status(200).json({
                          sucess: 'User created',
-                         user: { email, password, name, phone, city, state },
+                         user
                     });
                }
           } catch (error) {
-              res.status(400).json({ error }); 
+              res.status(200).json({ error: 'TA ERRADO'}); 
           }
      }
 }

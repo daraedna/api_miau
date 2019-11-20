@@ -14,23 +14,21 @@ module.exports = {
           
           const inst = await Inst.findOne({ emailInst }).select('+passwordInst');
 
-          const { id, nameInst, phoneInst, descritionInst, cityInst, stateInst } = inst;
-
-          const response = { id, nameInst, phoneInst, descritionInst, cityInst, stateInst }
-    
           if (!inst){
-               return res.status(404).json({ error: 'inst not found' });
+               return res.status(200).json({ error: 'inst not found' });
           }
 
           if (!await bcrypt.compare(passwordInst, inst.passwordInst)){
-               return res.status(400).send({ error: 'Invalid password' });
+               return res.status(200).send({ error: 'Invalid password' });
           }
 
           const tokenInst = jwt.sign({ id: inst.id }, authConfig.secret, {
                expiresIn: 86400,
           });
 
-          res.json({ inst: response, tokenInst });
+          inst.passwordInst = undefined;
+
+          res.json({ inst, tokenInst });
           
      },
 
@@ -42,7 +40,7 @@ module.exports = {
                const instAlreadyExists = await Inst.findOne({ emailInst });
 
                if(instAlreadyExists){
-                    res.status(409).json({ error: 'Inst already exists' });
+                    res.status(200).json({ error: 'Inst already exists' });
                }
                else{
                     await Inst.create({ emailInst, passwordInst, nameInst, phoneInst, descritionInst, cityInst, stateInst });
@@ -53,7 +51,7 @@ module.exports = {
                     });
                }
           } catch (error) {
-              res.status(400).json({ error }); 
+              res.status(200).json({ error }); 
           }
      }
 }
