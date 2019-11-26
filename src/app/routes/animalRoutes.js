@@ -8,5 +8,6 @@ const upload = multer(uploadConfig);
 
 animalRoutes.get('/animals', animalController.index);
 animalRoutes.post('/animal', upload.single('img'), animalController.store);
+animalRoutes.delete('/animals', animalController.delete);
 
 module.exports = animalRoutes;
