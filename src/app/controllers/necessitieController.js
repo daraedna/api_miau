@@ -26,6 +26,7 @@ module.exports = {
     },
 
     async store(req, res){
+        const { filename } = req.file;
         const { name, qtd, obs} = req.body;
         const { inst_id } = req.headers;
 
@@ -36,6 +37,7 @@ module.exports = {
         }
 
         const necessitie = await Necessitie.create({
+            img_nec: filename,
             name,
             qtd,
             obs,

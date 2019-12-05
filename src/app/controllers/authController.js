@@ -1,5 +1,6 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const IncomingForm = require('formidable').IncomingForm;
 
 const authConfig = require('../../config/auth');
 
@@ -35,6 +36,19 @@ module.exports = {
 
      //register
      async store(req, res){
+          // const { formData } = req.body;
+          // //const parts = formData.parts;
+
+          // console.log(formData);
+          //console.log(typeof JSON.parse(formData));
+
+          /*const Form = new IncomingForm;
+
+          Form.parse(req, (error, fields, { img_user }) => {
+               console.log(fields);
+               console.log(img_user);
+          })*/
+          
           const { filename } = req.file;
           const { email, password, name, phone, city, state } = req.body;
 

@@ -1,18 +1,18 @@
 const mongoose = require('mongoose');
 
 const NecessitieSchema = new mongoose.Schema({
-
+    img_nec: {
+        type: String,
+    },
     name: {
         type: String,
         required: true
     },
     qtd: {
         type: Number,
-        required: true
     },
     obs: {
         type: String,
-        required: true
     },
     inst_id: {
         type: mongoose.Schema.Types.ObjectId,
@@ -22,7 +22,16 @@ const NecessitieSchema = new mongoose.Schema({
     inst: {
         type: String,
         required: true
+    },
+    
+}, {
+    toJSON: {
+        virtuals: true
     }
 });
+
+NecessitieSchema.virtual('img_nec_url').get(function(){
+    return `http://localhost:3331/files/${this.img_nec}`
+})
 
 module.exports = mongoose.model('Necessitie', NecessitieSchema);
