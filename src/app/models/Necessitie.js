@@ -11,6 +11,9 @@ const NecessitieSchema = new mongoose.Schema({
     qtd: {
         type: Number,
     },
+    uni_medida: {
+        type: String,
+    },
     obs: {
         type: String,
     },

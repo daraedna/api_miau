@@ -27,7 +27,7 @@ module.exports = {
 
     async store(req, res){
         const { filename } = req.file;
-        const { name, qtd, obs} = req.body;
+        const { name, qtd, uni_medida, obs} = req.body;
         const { inst_id } = req.headers;
 
         const inst = await Inst.findById(inst_id);
@@ -40,6 +40,7 @@ module.exports = {
             img_nec: filename,
             name,
             qtd,
+            uni_medida,
             obs,
             inst_id,
             inst: inst.nameInst
