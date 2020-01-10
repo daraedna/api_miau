@@ -35,7 +35,7 @@ module.exports = {
 
 
      //register
-     async store(req, res){
+     async store({body}, res){
           // const { formData } = req.body;
           // //const parts = formData.parts;
 
@@ -49,8 +49,7 @@ module.exports = {
                console.log(img_user);
           })*/
           
-          const { filename } = req.file;
-          const { email, password, name, phone, city, state } = req.body;
+          const { email } = body;
 
           try {
                const userAlreadyExists = await User.findOne({ email });
@@ -59,15 +58,7 @@ module.exports = {
                     res.status(200).json({ error: 'User already exists' });
                }
                else{
-                    const user = await User.create({ 
-                         img_user: filename, 
-                         email, 
-                         password,
-                         name, 
-                         phone, 
-                         city, 
-                         state 
-                    });
+                    const user = await User.create(body);
                     
                       res.status(200).json({
                          sucess: 'User created',

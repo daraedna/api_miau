@@ -24,7 +24,7 @@ const corsConfig = {
 
 app.use('/files', express.static(path.resolve(__dirname, '..', 'uploads')));
 app.use(cors(corsConfig));
-app.use(express.json());
+app.use(express.json( { limit: '30mb'}));
 
 app.use(authRoutes);
 app.use(animalRoutes);
