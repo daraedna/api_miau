@@ -47,13 +47,17 @@ module.exports = {
                }
                else{
                     const user = await User.create(body);
-                    
+                    console.log(user);                                        
                       res.status(200).json({
                          sucess: 'User created',
                          user
                     });
                }
           } catch (error) {
+<<<<<<< HEAD
+=======
+               console.log(error);               
+>>>>>>> 151df1ff3493768cb03ea5c8a5647634ef395691
               res.status(500).json({ error: 'TA ERRADO'}); 
           }
      }
