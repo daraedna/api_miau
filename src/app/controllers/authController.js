@@ -36,18 +36,6 @@ module.exports = {
 
      //register
      async store({body}, res){
-          // const { formData } = req.body;
-          // //const parts = formData.parts;
-
-          // console.log(formData);
-          //console.log(typeof JSON.parse(formData));
-
-          /*const Form = new IncomingForm;
-
-          Form.parse(req, (error, fields, { img_user }) => {
-               console.log(fields);
-               console.log(img_user);
-          })*/
           
           const { email } = body;
 

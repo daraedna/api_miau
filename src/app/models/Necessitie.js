@@ -34,7 +34,7 @@ const NecessitieSchema = new mongoose.Schema({
 });
 
 NecessitieSchema.virtual('img_nec_url').get(function(){
-    return `http://localhost:3331/files/${this.img_nec}`
+    return `http://10.0.0.104:3331/files/${this.img_nec}`
 })
 
 module.exports = mongoose.model('Necessitie', NecessitieSchema);

@@ -2,6 +2,14 @@ const Animal = require('../models/Animal');
 const User = require('../models/User');
 
 module.exports = {  
+
+    async filter(req, res){
+        const { user_id } = req.headers;
+        const  animals = await Animal.find({user_id});
+    
+        return res.json({ animals });
+    },
+
     async index(req, res){
         const  animals = await Animal.find();
 
@@ -20,12 +28,11 @@ module.exports = {
 
         const  animals = await Animal.find({user_id});
     
-        return res.json(animals);
+        return res.json({animals});
     },
 
     async store(req, res){
-        const { filename } = req.file;
-        const { species, breed, age, observation, sex, size} = req.body;
+        const { species, breed, age, observation, sex, size, img} = req.body;
         const { user_id } = req.headers;
 
         const user = await User.findById(user_id);
@@ -37,7 +44,7 @@ module.exports = {
         const animal = await Animal.create({
             user_id,
             user: user.name,
-            img: filename,
+            img,
             species, 
             breed,
             age,

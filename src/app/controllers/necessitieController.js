@@ -10,6 +10,12 @@ module.exports = {
         return res.json({ necessities });
     },
 
+    async index (req, res) {
+        const necessities = await Necessitie.find();
+
+        return res.json({ necessities });
+    },
+
     async delete(req, res){
         const { inst_id } = req.headers;
         const inst = await Inst.findById(inst_id);

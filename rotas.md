@@ -9,8 +9,9 @@
 
 ### Animal
 - (POST) - '/animal' => Cadastra um animal 
-- (GET) - '/animal' => Retorna todos os animais cadastrados
-- (DELETE) - '/necessities' => Deleta uma necessidade de acordo com o id
+- (GET) - '/animals' => Retorna todos os animais cadastrados
+- (GET) - '/myAnimals' => Retorna todos os animais cadastrado pelo usuario logado
+- (DELETE) - '/animals' => Deleta uma necessidade de acordo com o id
 
 ### Necessidades
 - (POST) - '/necessitie' => Cadastra uma Necessidade em uma Instituição
