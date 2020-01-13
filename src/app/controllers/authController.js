@@ -54,7 +54,7 @@ module.exports = {
                     });
                }
           } catch (error) {
-              res.status(200).json({ error: 'TA ERRADO'}); 
+              res.status(500).json({ error: 'TA ERRADO'}); 
           }
      }
 }
