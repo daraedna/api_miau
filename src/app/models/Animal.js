@@ -35,7 +35,19 @@ const AnimalSchema = new mongoose.Schema({
     user: {
         type: String,
         required: true
-    }
+    },
+    user_phone: {
+        type: Number,
+        required: true,
+    },
+    user_img: {
+        type: String,
+        required: true,
+    },
+    user_img_url: {
+        type: String,
+        required: true,
+    },
 }, {
     toJSON: {
         virtuals: true

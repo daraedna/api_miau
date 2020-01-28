@@ -44,6 +44,9 @@ module.exports = {
         const animal = await Animal.create({
             user_id,
             user: user.name,
+            user_phone: user.phone,
+            user_img: user. img_user,
+            user_img_url: user.img_user_url,
             img,
             species, 
             breed,
