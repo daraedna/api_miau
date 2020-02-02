@@ -26,6 +26,10 @@ const NecessitieSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    phoneInst: {
+        type: Number,
+        required: true
+    }
     
 }, {
     toJSON: {
