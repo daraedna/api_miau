@@ -24,7 +24,7 @@ module.exports = {
             return res.status(200).json({ error: 'user does not exists' }); 
         }
 
-        await Animal.deleteOne({_id: req.body._id});
+        await Animal.deleteOne({_id: req.params.id});
 
         const  animals = await Animal.find({user_id});
     
