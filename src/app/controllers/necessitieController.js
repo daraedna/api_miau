@@ -24,7 +24,7 @@ module.exports = {
             return res.status(200).json({ error: 'Inst does not exists' }); 
         }
 
-        await Necessitie.deleteOne({_id: req.body._id});
+        await Necessitie.deleteOne({_id: req.params.id});
 
         const  necessities = await Necessitie.find({inst_id});
     

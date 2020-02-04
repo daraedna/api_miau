@@ -9,6 +9,6 @@ const upload = multer(uploadConfig);
 necessitieRoutes.get('/necessities', necessitieController.filter);
 necessitieRoutes.get('/necessitiesList', necessitieController.index);
 necessitieRoutes.post('/necessitie', upload.single('img_nec'), necessitieController.store);
-necessitieRoutes.delete('/necessities', necessitieController.delete);
+necessitieRoutes.delete('/necessities/:id', necessitieController.delete);
 
 module.exports = necessitieRoutes;
